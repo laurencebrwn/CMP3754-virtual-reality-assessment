@@ -3212,9 +3212,10 @@ GameObject:
   - component: {fileID: 1742809331}
   - component: {fileID: 1742809330}
   - component: {fileID: 1742809332}
+  - component: {fileID: 1742809333}
   m_Layer: 0
   m_Name: XR Rig
-  m_TagString: Untagged
+  m_TagString: VR Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3267,6 +3268,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!136 &1742809333
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742809329}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.75
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!1001 &1743230809
 PrefabInstance:
   m_ObjectHideFlags: 0

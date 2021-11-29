@@ -111,19 +111,17 @@ public class CarRoute : MonoBehaviour
 
   void OnTriggerEnter(Collider other)
   {
-    if(other.gameObject.CompareTag("Pedestrian") || other.gameObject.CompareTag("Car"))
+    if(other.gameObject.CompareTag("Pedestrian") || other.gameObject.CompareTag("Car") || other.gameObject.CompareTag("VR Player"))
     {
       go = false;
     }
-
   }
 
   void OnTriggerExit(Collider other)
   {
-    if(other.gameObject.CompareTag("Pedestrian") || other.gameObject.CompareTag("Car"))
+    if(other.gameObject.CompareTag("Pedestrian") || other.gameObject.CompareTag("Car") || other.gameObject.CompareTag("VR Player"))
     {
       go = true;
     }
-
   }
 }
