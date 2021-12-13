@@ -8,6 +8,7 @@ TagManager:
   - Car
   - CarCollider
   - VR Player
+  - Barrier
   layers:
   - Default
   - TransparentFX

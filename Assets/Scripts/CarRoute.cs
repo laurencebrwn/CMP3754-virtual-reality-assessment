@@ -11,6 +11,10 @@ public class CarRoute : MonoBehaviour
   public Rigidbody rb;
   public bool go = false;
   public float initialDelay;
+  public float speed = 0;
+  public float maxSpeed = 10;
+  public float acceleration = 10;
+  public float decceleration = 20;
 
   // Start is called before the first frame update
   void Start()
@@ -66,16 +70,33 @@ public class CarRoute : MonoBehaviour
     //calculate velocity for this frame
     Vector3 velocity = displacement;
     velocity.Normalize();
-    velocity *= 10f;
 
-    if (go)
+    if ((speed < maxSpeed) && (go))
     {
-      //apply velocity
-      Vector3 newPosition = transform.position;
-      newPosition += velocity * Time.deltaTime;
-      rb.MovePosition(newPosition);
-
+        speed = speed + acceleration  * Time.deltaTime;
+        velocity *= speed;
     }
+    else if (!go)
+    {
+        if(speed > decceleration * Time.deltaTime)
+        {
+            speed = speed - decceleration * Time.deltaTime;
+            velocity *= speed;
+        }
+        else
+        {
+            speed = 0;
+            velocity *= speed;
+        }
+    }
+    else
+    {
+      velocity *= 10;
+    }
+    Vector3 newPosition = transform.position;
+    newPosition += velocity * Time.deltaTime;
+    rb.MovePosition(newPosition);
+
     //align to velocity
     Vector3 desiredForward = Vector3.RotateTowards(transform.forward, velocity,
     10.0f * Time.deltaTime, 0f);
@@ -111,7 +132,7 @@ public class CarRoute : MonoBehaviour
 
   void OnTriggerEnter(Collider other)
   {
-    if(other.gameObject.CompareTag("Pedestrian") || other.gameObject.CompareTag("Car") || other.gameObject.CompareTag("VR Player"))
+    if(other.gameObject.CompareTag("Pedestrian") || other.gameObject.CompareTag("Car") || other.gameObject.CompareTag("VR Player") || other.gameObject.CompareTag("Barrier"))
     {
       go = false;
     }
@@ -119,7 +140,7 @@ public class CarRoute : MonoBehaviour
 
   void OnTriggerExit(Collider other)
   {
-    if(other.gameObject.CompareTag("Pedestrian") || other.gameObject.CompareTag("Car") || other.gameObject.CompareTag("VR Player"))
+    if(other.gameObject.CompareTag("Pedestrian") || other.gameObject.CompareTag("Car") || other.gameObject.CompareTag("VR Player") || other.gameObject.CompareTag("Barrier"))
     {
       go = true;
     }
